@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html>
 <head>
     <title>Pacman</title>
@@ -15,7 +15,7 @@
 <body>
  
         <audio autoplay loop>
-        <source src="assets/Note Blanche.mp3" type="audio/mp3">
+            <source src="assets/Note Blanche.mp3" type="audio/mp3">
         </audio>
     
     <script type="text/javascript">
@@ -34,6 +34,10 @@
         this.opposites = [ Phaser.NONE, Phaser.RIGHT, Phaser.LEFT, Phaser.DOWN, Phaser.UP ];
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
+        this.score=0;
+        this.scoreText='';
+        this.bonus=0;
+        this.bonusText='';
     };
     Pacman.prototype = {
         init: function () {
