@@ -40,7 +40,7 @@
         this.bonusText='';
     };
     Pacman.prototype = {
-        init: function () {
+         init: function () {
             this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             this.scale.pageAlignHorizontally = true;
             this.scale.pageAlignVertically = true;
@@ -50,7 +50,7 @@
         preload: function () {
             //  We need this because the assets are on github pages
             //  Remove the next 2 lines if running locally
-
+ 
          this.load.baseURL = 'https://giorgosgr.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
             this.load.image('dot', 'assets/fire.png');
@@ -86,15 +86,10 @@
             for (var i = 0; i < 3; i++) {
 			var pacman = lives.create(game.world.width - 235 + (30 * i), 517, 'Capture1');
 			pacman.anchor.setTo(0.5, 0.5);
-  	pacman.angle = 90;
-  	pacman.alpha = 0.4;
+  	                pacman.angle = 90;
+  	                pacman.alpha = 0.4;
 		    }
-	    var sprite = game.add.sprite(317, 465, 'apple');
-	    var sprite1 = game.add.sprite(87, 265, 'apple');
-	    var sprite2 = game.add.sprite(320, 200, 'apple');
-	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);
-     game.add.tween(sprite1).to( { alpha: 0 }, 50000, Phaser.Easing.Linear.None, true);
-     game.add.tween(sprite2).to( { alpha: 0 }, 70000, Phaser.Easing.Linear.None, true);
+		
         },
         checkKeys: function () {
             if (this.cursors.left.isDown && this.current !== Phaser.LEFT)
