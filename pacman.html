@@ -60,8 +60,7 @@
             this.load.spritesheet('pacman', 'assets/poceball.png', 32, 32);
             this.load.tilemap('map', 'assets/ddd.json', null, Phaser.Tilemap.TILED_JSON);
             //  Needless to say, graphics (C)opyright Namco
-        },
-        create: function () {
+        },        create: function () {
             this.map = this.add.tilemap('map');
             this.map.addTilesetImage('pacman-tiles', 'tiles');
             this.layer = this.map.createLayer('Pacman');
@@ -83,7 +82,7 @@
             this.move(Phaser.LEFT);
             this.bonusText = game.add.text(350, 500, 'Bonus: 0', { fontSize: '20px Arial', fill: 'orange' });
             this.scoreText = game.add.text(0, 500, 'Score: 0', { fontSize: '20px Arial', fill: 'yellow' });
-            lives = game.add.group();
+            lives= game.add.group();
             game.add.text(game.world.width - 340, 500, 'Lives : ', { fontSize: '20px Arial', fill: 'white' });
             for (var i = 0; i < 3; i++) {
 			var pacman = lives.create(game.world.width - 235 + (30 * i), 517, 'Capture1');
