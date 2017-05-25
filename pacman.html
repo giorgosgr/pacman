@@ -7,7 +7,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
+            background-color: #100;
 	    background-attachment : fixed;
             background-size : 100% auto;
         }
@@ -53,24 +53,32 @@
             //  We need this because the assets are on github pages
             //  Remove the next 2 lines if running locally
  
-         this.load.baseURL = 'https://giorgosgr.github.io/pacman/';
+          this.load.baseURL = 'https://giorgosgr.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
             this.load.image('dot', 'assets/fire.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/poceball.png', 32, 32);
             this.load.tilemap('map', 'assets/ddd.json', null, Phaser.Tilemap.TILED_JSON);
+	    this.load.image('coin','assets/coin.jpg');
+	    this.load.spritesheet('capture', 'assets/capture.png', 29, 29);
             //  Needless to say, graphics (C)opyright Namco
-        },        create: function () {
+        },       
+	    create: function () {
             this.map = this.add.tilemap('map');
             this.map.addTilesetImage('pacman-tiles', 'tiles');
             this.layer = this.map.createLayer('Pacman');
             this.dots = this.add.physicsGroup();
+	    this.coins = this.add.physicsGroup();
             this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
+	    this.map.createFromTiles(35, this.safetile, 'coin', this.layer, this.coins);
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.dots.setAll('x', 6, false, false, 1);
             this.dots.setAll('y', 6, false, false, 1);
+            this.coins.setAll('x', 6, false, false, 1);
+            this.coins.setAll('y', 6, false, false, 1);    
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
+            
             //  Position Pacman at grid location 14x17 (the +8 accounts for his anchor)
             this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'pacman', 0);
             this.pacman.anchor.set(0.5);
@@ -190,6 +198,27 @@
                 this.dots.callAll('revive');
             }
         },
+	   coin.kill();
+
+	    this.bonus+=100;
+            this.score+=100;
+            this.bonusText.text= 'Bonus: '+ this.bonus;
+
+            this.scoreText.text= 'Score: ' + this.bonus;
+
+            
+
+	   
+
+            if(this.dots.total===0)
+
+            {
+
+                this.dots.callAll('revive');
+
+            }
+
+        }, 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
